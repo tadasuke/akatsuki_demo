@@ -1,0 +1,4 @@
+akatsuki_demo
+=============
+
+akatsukiフレームワークのデモ
