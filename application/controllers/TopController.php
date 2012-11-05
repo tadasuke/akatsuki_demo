@@ -6,6 +6,11 @@ class TopController extends BaseController{
 		
 		AK_log::getLogClass() -> log( AK_Log::INFO, __METHOD__, __LINE__, 'FUCK' );
 		
+		$userDataClass = new UserData();
+		$valeuArray = $userDataClass -> getDataByUserId( 1 );
+		
+		var_dump( $valeuArray );
+		exit;
 		
 		echo( 'hello akatsuki!!<br/>' );
 		

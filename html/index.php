@@ -7,15 +7,17 @@ require_once 'AK_Core.php';
 require_once 'AK_BaseController.php';
 require_once 'AK_Registry.php';
 require_once 'AK_Log.php';
+require_once 'AK_Db.php';
 
 require_once '../application/controllers/BaseController.php';
+require_once '../application/models/UserData.class.php';
 
 AK_Registry::set( 'MODE', 'DEVELOP' );
 
 
-// ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹å–å¾—
 $akCoreClass = AK_Core::getInstance();
-// ƒRƒ“ƒgƒ[ƒ‰ƒpƒXİ’è
+// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªè¨­å®š
 $akCoreClass -> setControllerDir( '/work/akatsuki_demo/application/controllers' );
-// ˆ—Às
+// å‡¦ç†é–‹å§‹
 $akCoreClass -> run();
