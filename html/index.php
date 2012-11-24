@@ -4,7 +4,6 @@ define( 'AKATSUKI_PATH', '/work/akatsuki/' );
 set_include_path( get_include_path() . PATH_SEPARATOR . AKATSUKI_PATH );
 
 require_once 'AK_Core.php';
-require_once 'AK_BaseController.php';
 require_once 'AK_Registry.php';
 require_once 'AK_Log.php';
 require_once 'AK_Db.php';

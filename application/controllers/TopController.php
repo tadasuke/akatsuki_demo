@@ -5,6 +5,7 @@ class TopController extends BaseController{
 	public function indexAction() {
 		
 		$userDataClass = new UserData( 'augustus' );
+		$userDataClass = new UserData();
 		$valeuArray = $userDataClass -> getDataByUserId( 1 );
 		
 		var_dump( $valeuArray );
