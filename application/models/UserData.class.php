@@ -2,10 +2,6 @@
 
 class UserData extends AK_Db {
 	
-	public function __construct() {
-		$this -> tableName = 'user_data';
-	}
-	
 	public function getDataByUserId( $userId ) {
 		
 		AK_Log::getLogClass() -> log( AK_Log::INFO, __METHOD__, __LINE__, 'START' );
@@ -15,7 +11,7 @@ class UserData extends AK_Db {
 			"SELECT "
 				. "  user_id "
 				. ", name "
-			. "FROM " . $this -> tableName . " "
+			. "FROM user_data "
 			. "WHERE user_id = ? "
 			;
 			

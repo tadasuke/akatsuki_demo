@@ -4,9 +4,7 @@ class TopController extends BaseController{
 	
 	public function indexAction() {
 		
-		AK_log::getLogClass() -> log( AK_Log::INFO, __METHOD__, __LINE__, 'FUCK' );
-		
-		$userDataClass = new UserData();
+		$userDataClass = new UserData( 'augustus' );
 		$valeuArray = $userDataClass -> getDataByUserId( 1 );
 		
 		var_dump( $valeuArray );
