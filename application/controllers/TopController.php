@@ -9,7 +9,6 @@ class TopController extends BaseController{
 		$valeuArray = $userDataClass -> getDataByUserId( 1 );
 		
 		var_dump( $valeuArray );
-		exit;
 		
 		echo( 'hello akatsuki!!<br/>' );
 		
@@ -17,6 +16,11 @@ class TopController extends BaseController{
 		echo( $name . '<br/>' );
 		
 		echo( AK_Registry::get( 'MODE' ) . '<br/>' );
+		
+		$version = $this -> userParam[0];
+		$method  = $this -> userParam[1];
+		echo( $version . '<br/>' );
+		echo( $method  . '<br/>' );
 		
 	}
 	
