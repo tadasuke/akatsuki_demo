@@ -4,6 +4,7 @@ class TopController extends BaseController{
 	
 	public function indexAction() {
 		
+		/*
 		$userDataClass = new UserData( 'augustus' );
 		$userDataClass = new UserData();
 		$valueArray = $userDataClass -> getDataByUserId( 1 );
@@ -14,6 +15,19 @@ class TopController extends BaseController{
 		);
 		
 		$this -> returnJsonResponse( $userDataArray );
+		
+		*/
+		
+		//$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );
+		$mao = AK_Mem::getInstance();
+		$mao -> addServer( new AK_MemConfig( 'localhost' ) );
+		
+		$key = 'tadasuke';
+		$mao -> set( $key, 'fuck!!' );
+		
+		$value = $mao -> get( $key );
+		echo( $value );
+		
 		
 	}
 	
