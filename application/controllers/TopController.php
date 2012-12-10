@@ -20,16 +20,10 @@ class TopController extends BaseController{
 		
 		//$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );
 		
-		AK_Mem::setAutoCommitFlg( TRUE );
-		$mao = AK_Mem::getInstance();
-		$mao -> addServer( new AK_MemConfig( 'localhost' ) );
-		
-		$key = 'tadasuke';
-		//$mao -> set( $key, 'fuck!!' );
-		
-		$value = $mao -> get( $key );
-		echo( $value . '<br/>' );
-		echo( $mao -> getGetType() . '<br/>' );
+		$value = 'tadasuke!!';
+		$array = array( 'value' => $value );
+		$this -> setResponseParam( $array );
+		return;
 		
 		//$mao -> commit();
 		

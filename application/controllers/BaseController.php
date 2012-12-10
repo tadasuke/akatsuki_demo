@@ -20,7 +20,7 @@ class BaseController extends AK_BaseController {
 	
 	public function afterRun() {
 		
-		AK_DaoFactory::endProcess();
+		AK_DaoFactory::allCommit();
 		
 	}
 	
