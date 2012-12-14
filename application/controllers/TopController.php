@@ -1,33 +1,74 @@
 <?php
 
-class TopController extends BaseController{
+class TopController extends AK_BaseController{
 	
+	/**
+	 * 前処理
+	 */
+	public function beforeRun() {
+	
+		// ログ出力設定
+		AK_Log::setAkLoggingClass( '/var/log/akatsuki_demo', AK_Log::DEBUG );
+	
+		// DB接続設定
+		$databaseName = 'akatsuki_db';
+		$host         = 'localhost';
+		$user         = 'akatsuki';
+		$password     = 'hJ5mN7XQ7s8h';
+	
+		$akDbConfig = new AK_DbConfig( $databaseName, $host, $user, $password );
+		AK_DaoFactory::addDbConfig( $akDbConfig );
+	
+	}
+	
+	
+	
+	/**
+	 * メイン処理
+	 */
 	public function indexAction() {
 		
-		/*
-		$userDataClass = new UserData( 'augustus' );
-		$userDataClass = new UserData();
-		$valueArray = $userDataClass -> getDataByUserId( 1 );
+		// Memcacheインスタンス取得
+		$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );
 		
-		$userDataArray = array(
-			  'user_id' => $valueArray[0]['user_id']
-			, 'name'    => $valueArray[0]['name']
-		);
+		// Memcacheから値を取得
+		$name = $mao -> get( 'name' );
 		
-		$this -> returnJsonResponse( $userDataArray );
+		// 値が取得できなかった場合
+		if ( $name === FALSE ) {
 		
-		*/
+			// DBからデータを取得
+			$userDataClass = new UserData( 'augustus' );
+			$userDataClass = new UserData();
+			$valueArray = $userDataClass -> getDataByUserId( 1 );
+			
+			$name = (count( $valueArray ) > 0) ? $valueArray[0]['name'] : '';
+			
+			// Memcacheに登録
+			$mao -> set( 'name', $name );
+		} else {
+			;
+		}
 		
-		//$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );
+		$returnArray = array( 'name' => $name );
 		
-		$value = 'tadasuke!!';
-		$array = array( 'value' => $value );
-		$this -> setResponseParam( $array );
+		$this -> setResponseParam( $returnArray );
 		return;
-		
-		//$mao -> commit();
 		
 	}
 	
+	
+	/**
+	 * 後処理
+	 */
+	public function afterRun() {
+	
+		// DBコミット
+		AK_DaoFactory::allCommit();
+		
+		// Memcacheコミット
+		AK_Mem::getInstance() -> commit();
+	
+	}
 	
 }
