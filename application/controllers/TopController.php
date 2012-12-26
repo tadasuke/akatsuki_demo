@@ -7,6 +7,15 @@ class TopController extends AK_BaseController{
 	 */
 	public function beforeRun() {
 	
+		// JSONPの場合
+		$callback = $this -> getParam( 'callback' );
+		if ( strlen( $callback ) > 0 ) {
+			$this -> setResponseType( self::RESPONSE_TYPE_JSONP );
+			$this -> setCallback( $callback );
+		} else {
+			;
+		}
+		
 		// ログ出力設定
 		AK_Log::setAkLoggingClass( '/var/log/akatsuki_demo', AK_Log::DEBUG );
 	
@@ -27,6 +36,7 @@ class TopController extends AK_BaseController{
 	 * メイン処理
 	 */
 	public function indexAction() {
+		
 		
 		// Memcacheインスタンス取得
 		$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );

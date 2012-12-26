@@ -9,7 +9,6 @@ require_once 'AK_Log.php';
 require_once 'AK_Db.php';
 require_once 'AK_Mem.php';
 
-require_once '../application/controllers/BaseController.php';
 require_once '../application/models/UserData.class.php';
 
 AK_Registry::set( 'MODE', 'DEVELOP' );
