@@ -8,11 +8,15 @@ require_once 'AK_Registry.php';
 require_once 'AK_Log.php';
 require_once 'AK_Db.php';
 require_once 'AK_Mem.php';
+require_once 'AK_Ini.php';
 
 require_once '../application/models/UserData.class.php';
+require_once '../application/models/ini/DbIni.class.php';
 
 AK_Registry::set( 'MODE', 'DEVELOP' );
 
+// 設定ファイル読み込み
+AK_Ini::setConfigFromArray( DbIni::$configArray );
 
 // インスタンス取得
 $akCoreClass = AK_Core::getInstance();

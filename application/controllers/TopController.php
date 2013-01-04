@@ -20,14 +20,20 @@ class TopController extends AK_BaseController{
 		AK_Log::setAkLoggingClass( '/var/log/akatsuki_demo', AK_Log::DEBUG );
 	
 		// DB接続設定
+		/*
 		$databaseName = 'akatsuki_db';
 		$host         = 'localhost';
 		$user         = 'akatsuki';
 		$password     = 'hJ5mN7XQ7s8h';
+		*/
+		$databaseName = AK_Ini::getConfig( 'db_data', 'database_name' );
+		$host         = AK_Ini::getConfig( 'db_data', 'host' );
+		$user         = AK_Ini::getConfig( 'db_data', 'user' );
+		$password     = AK_Ini::getConfig( 'db_data', 'password' );
 	
 		$akDbConfig = new AK_DbConfig( $databaseName, $host, $user, $password );
 		AK_DaoFactory::addDbConfig( $akDbConfig );
-	
+		
 	}
 	
 	
@@ -37,12 +43,12 @@ class TopController extends AK_BaseController{
 	 */
 	public function indexAction() {
 		
-		
 		// Memcacheインスタンス取得
 		$mao = AK_Mem::getInstance( new AK_MemConfig( 'localhost' ) );
 		
 		// Memcacheから値を取得
 		$name = $mao -> get( 'name' );
+		$name = FALSE;
 		
 		// 値が取得できなかった場合
 		if ( $name === FALSE ) {
@@ -59,6 +65,12 @@ class TopController extends AK_BaseController{
 		} else {
 			;
 		}
+		
+		$std = new stdClass();
+		$std -> name = 'tadasuke';
+		
+		
+		
 		
 		$returnArray = array( 'name' => $name );
 		
@@ -82,3 +94,4 @@ class TopController extends AK_BaseController{
 	}
 	
 }
+
